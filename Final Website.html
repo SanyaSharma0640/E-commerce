@@ -1,0 +1,103 @@
+<html>
+    <head>
+    <title>
+    Login page
+    </title>
+    <link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script>  
+function validateform(){  
+var name=document.login.userid.value;  
+var password=document.login.pswrd.value; 
+var err=0; 
+
+
+  
+if (name==null || name==""){  
+  alert("Name can't be blank");  
+  err=err+1;
+}
+else if(password.length<6){  
+  alert("Password must be at least 6 characters long.");  
+  err=err+1;  
+} 
+
+if(err==0){
+alert("welcome "+name);
+window.open('index.html');
+} 
+
+}
+</script>  
+    </head>
+    <body>
+    <h1 style="font-family:Comic Sans Ms; text-align:center; font-size:20pt; color:black";>
+<MARQUEE>WWW.ONLINE CHITKARA BOOKS.COM</MARQUEE>
+    </h1>
+<header class="header">
+    <div class="left">
+        <img src="logo2.jpg.png" align="left" alt="logo" height="84">
+        
+    </div>
+    <div class="right">
+	   <a href="about.html"><button class="btn">About Us</button></a>
+	   <a href="#contact"><button class="btn">Contact Us</button></a>
+      
+    </div>
+
+</header>
+    <form name="login">
+        <div class="container"> 
+		 <!-- <form name="myform" method="post" action="http://www.javatpoint.com/javascriptpages/valid.jsp" onsubmit="return validateform()" >  -->
+            <h1>LOGIN</h1> 
+            <b>Username:</b> <input type="text" name="userid"/><br><br>
+            <b>Password:</b> <input type="password" name="pswrd"/><br>
+            <input type="button" value="Login" class="btn" onClick="validateform()"/>
+            <input type="reset" value="Cancel" class="btn"/>
+			<!--<a href="index.html">-->
+         </div>
+		<!-- </form> -->
+   
+    </form>
+	<br><br><br>
+	<div class="footer" id="contact">
+ 
+  <div class="icon">
+    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+    <i class="fa fa-twitter-square" aria-hidden="true"></i>
+    <i class="fa fa-github-square" aria-hidden="true"></i>
+    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+  </div>
+  <div class="main">
+    <div class="con">
+      <div class="add">
+    <p><h3>Address</h3>Chitkara University<br>Rajpura,Punjab,zip-140401</p>
+       </div>
+    </div>
+    <div class="con">
+      <div class="service">
+      <h3>Our Service</h3>
+      <a>Web devlopment<br></a>
+      <a>Marketing<br></a>
+      <a>Advertisement</a>
+      </div>
+      </div>
+      <div class="con">
+        <div class="eml">
+        <h3>Email Us</h3>
+        <a>sanya0640.be20@chitkara.edu.in<br></a>
+        <a>rishita0595.be20@chitkara.edu.in<br></a>
+        <a>richa0583.be20@chitkara.edu.in<br></a>
+		<a>radhika0558.be20@chitkara.edu.in<br></a>
+        </div>
+        </div>
+  </div>
+  <div class="copyright">
+   <b> &copy; Copyright:@2020RADKO PVT LTD .All rights reserved </b>  
+  </div>
+</div>
+
+    
+    </body>
+    </html>

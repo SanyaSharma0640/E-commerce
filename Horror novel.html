@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script>
+var shoppingCart = [];
+        
+        //this function manipulates DOM and displays content of our shopping cart
+        function displayShoppingCart()
+{
+            var orderedProductsTblBody=document.getElementById("orderedProductsTblBody");
+	    
+	    var d = new Date();
+		
+            //ensure we delete all previously added rows from ordered products table
+            while(orderedProductsTblBody.rows.length>0) {
+                orderedProductsTblBody.deleteRow(0);
+            }
+                   
+            //variable to hold total price of shopping cart
+            var cart_total_price=0;
+            //iterate over array of objects
+            for(var product in shoppingCart){
+                //add new row      
+
+		var rowCount = orderedProductsTblBody.rows.length;
+
+
+                var row = orderedProductsTblBody.insertRow(rowCount);
+
+		var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "checkbox";
+            element1.name="chkbox[]";
+            cell1.appendChild(element1);
+
+		var cell2 = row.insertCell(1);
+            cell2.innerHTML = rowCount + 1;
+
+		
+
+
+                //create three cells for product properties 
+                var cellName = row.insertCell(2);
+                var cellDescription = row.insertCell(3);
+                var cellPrice = row.insertCell(4);
+		
+
+                cellPrice.align="right";
+                //fill cells with values from current product object of our array
+                cellName.innerHTML = shoppingCart[product].Name;
+                cellDescription.innerHTML = shoppingCart[product].Description;
+                cellPrice.innerHTML = shoppingCart[product].Price;
+                cart_total_price+=shoppingCart[product].Price;
+            }
+            //fill total cost of our shopping cart 
+            document.getElementById("cart_total").innerHTML=cart_total_price;
+	    document.getElementById("date_of_cart").innerHTML="<b> Cart last updated on: </b>"+ d.toDateString()+"<b> at Time: </b>"+d.toLocaleTimeString();
+	    
+        }
+function AddtoCart(name,description,price){
+           var singleProduct = {};
+           singleProduct.Name=name;
+           singleProduct.Description=description;
+           singleProduct.Price=price; 
+           shoppingCart.push(singleProduct);
+           displayShoppingCart();
+		}
+		   
+function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            for(var i=0; i<rowCount; i++) 
+		{
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+	   
+
+		if(null != chkbox && true == chkbox.checked) 
+		{
+                    table.deleteRow(i);
+		    shoppingCart.splice(i,1);
+                    rowCount--;
+                    i--;
+                }
+            }
+            }catch(e) {
+                alert(e);
+            }
+
+	displayShoppingCart();
+	
+        }
+		function checkcartisemptyornot(){
+		    if(shoppingCart.length==0){
+			    alert("There is nothing to buy in the cart");
+			}
+			else{
+			    window.open('payment.html');
+			}
+		}
+</script>
+</head>
+<body>
+
+<ul href="top">
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">NOVELS</a>
+    <div class="dropdown-content">
+      <a href="Horror novels.html">Horrer</a>
+      <a href="Romantic Novel.html">Romantic</a>
+      <a href="Adventure Novel.html">Adventure</a>
+      <a href="Science Fiction novel.html">Science fiction</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">MAGAZINES</a>
+	<div class="dropdown-content">
+      <a href="Bussiness & Finance Magazine.html">Business & Finance Magazines</a>
+      <a href="Children magazine.html">Children's Magazines</a>
+      <a href="fasion magazines.html">Fashion & Style Magazines</a>
+      <a href="Entertainment magazines.html">Entertainment & TV Magazines</a>
+    </div>
+	</li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">TEXTBOOKS</a>
+    <div class="dropdown-content">
+      <a href="Basic textbooks.html">Basic Texts</a>
+      <a href="Manuals.html">Manuals</a>
+      <a href="Reference books.html">Reference Books</a>
+      <a href="Exercise Books.html">Exercise Books</a>
+    </div>
+	</li>
+	<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">COMICS</a>
+    <div class="dropdown-content">
+      <a href="Superhero comics.html">Superhero</a>
+      <a href="Humor comics.html">Humor</a>
+      <a href="Non-Fiction comics.html">Non-Fiction</a>
+      <a href="Thriller comics.html">Thriller</a>
+    </div>
+	</li>
+
+  
+  <div class="search">
+ <li><input type="text"> <input type="button" value="Search" style="background:aqua; height: 25px;"></li>
+ </div>
+ 
+</ul>
+<div id="div">
+<img src="logo2.jpg.png" align="left" alt="logo" height="84">
+</div>
+<div class="bookcat">
+  <h1>ONLINE CHITKARA BOOK STORE</h1>
+</div>
+<!--cards1-->
+<div class="maincard">
+  <div class="bac">
+  <div class="text1" id="sci"><h3>HORROR NOVELS</h3></div>
+</div>
+
+<div class="card">
+  <div class="image">
+    <img src="Horror/Death's Servant.jpg">
+  </div>
+  <div class="tittle">
+  <h3>Death's Servant</h3>
+  </div>
+ <p align="center"><b>Best Buy Rs.210/-</b></p><br>
+   <button onclick="AddtoCart('Death`s Srevant','Horror Novel',210)">Add To Cart</button>
+  
+</div>
+<div class="card">
+  <div class="image">
+    <img src="Horror/Irish Ghost Stories.png">
+  </div>
+  <div class="tittle">
+  <h3>Irish Ghost Stories</h3>
+  </div>
+  <p align="center"><b>Best Buy Rs.385/-</b></p><br>
+  <button onclick="AddtoCart('Irish Ghost Stories','Horror Novel',385)">Add To Cart</button>
+  
+</div>
+<div class="card">
+  <div class="image">
+    <img src="Horror/The Neighbourhood.jpg">
+  </div>
+  <div class="tittle">
+  <h3>The Neighbourhood</h3>
+  </div>
+  <p align="center"><b>Best Buy Rs.185/-</b></p><br>
+  <button onclick="AddtoCart('The Neighbourhood','Horror Novel',185)">Add To Cart</button>
+  
+</div>
+<div class="card">
+  <div class="image">
+    <img src="Horror/Zombie Attack.jpg">
+  </div>
+  <div class="tittle">
+  <h3>Zombie Attack</h3>
+  </div>
+  <p align="center"><b>Best Buy Rs.180/-</b></p><br>
+  <button onclick="AddtoCart('Zombie Attack','Horror Novel',180)">Add To Cart</button>
+  
+</div>
+<div class="card">
+  <div class="image">
+    <img src="Horror/A Shade Of Vampire.jpg">
+  </div>
+  <div class="tittle">
+  <h3>A Shade Of Vampire</h3>
+  </div>
+  <p align="center"><b>Best Buy Rs.180/</b></p>-<br>
+  <button onclick="AddtoCart('A Shade of Vampire','Horror Novel',210)">Add To Cart</button>
+</div>
+<div class="card">
+  <div class="image">
+    <img src="Horror/Twice Dead.jpg">
+  </div>
+  <div class="tittle">
+  <h3>Twice Dead</h3>
+  </div>
+  <p align="center"><b>Best Buy Rs.350/-</b></p><br>
+  <button onclick="AddtoCart('Twice Dead','Horror Novel',350)">Add To Cart</button>
+  </div>
+  <div class="card">
+  <div class="image">
+    <img src="Horror/The Zoombies Fever Series.jfif">
+  </div>
+  <div class="tittle">
+  <h3>The Zoombies Fever Series</h3>
+  </div>
+  <p align="center"><b>Best Buy Rs.280/-</b></p><br>
+  <button onclick="AddtoCart('The Zoombies Fever Series','Horror Novel',280)">Add To Cart</button>
+  </div>
+  
+
+<table cellpadding="4" cellspacing="4" border="1" id="orderedProductsTbl" width="100%" bottom="0" padding="4" class="mycart">
+	<thead>
+	<th colspan="5" align="center">Your Cart</th>
+	<tr>
+	<th></th>
+        <th>Item no. </th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        </tr>
+        </thead>
+<tbody id="orderedProductsTblBody">
+</tbody>
+<tfoot>
+	<tr>
+	<td colspan="2" align="center"><input class="tfbutton2" type="button" value="Delete" onclick="deleteRow('orderedProductsTblBody')" /></td>
+	<td>Total(in Rupees)</td>
+        <td colspan="2" align="right" id="cart_total"></td>
+        </tr>
+	
+</tfoot>
+</table>
+<br><br>
+<center>
+<button onclick="checkcartisemptyornot()">Buy Now!</button></a>
+</center>
+</div>
+</body>
+</html>
